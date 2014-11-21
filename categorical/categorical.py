@@ -7,7 +7,8 @@ class CategoricalComparator(object):
         
         categories = [(name, name) for name in category_names]
         categories += itertools.combinations(category_names, 2)
-
+        self.dummy_names = categories[1:]
+        
         self.categories = {}
         for i, cat in enumerate(categories) :
             response = responseVector(i, vector_length)
@@ -41,20 +42,3 @@ def responseVector(value, vector_length) :
         response[value - 1] = 1
     return response
 
-if __name__ == '__main__' :
-    comparator = CategoricalComparator(['a', 'b'])
-    print comparator('a', 'a')
-    print comparator('b', 'a')
-    print comparator('a', 'b')
-    print comparator('b', 'b')
-    print comparator('b', '')
-    comparator = CategoricalComparator(['a', 'b', 'c'])
-    print comparator('a', 'a')
-    print comparator('b', 'a')
-    print comparator('a', 'b')
-    print comparator('b', 'b')
-    print comparator('b', '')
-    print comparator('c', 'c')
-    print comparator('a', 'c')
-    print comparator('b', 'c')
-    
