@@ -31,6 +31,8 @@ class CategoricalTest(unittest.TestCase):
         comparator = categorical.CategoricalComparator(['a', 'b'])
         self.assertRaises(ValueError, lambda : comparator(1,2))
         self.assertRaises(ValueError, lambda : comparator('', 1))
+        self.assertRaises(ValueError, lambda : categorical.CategoricalComparator(['', 'b']))
+
 
 if __name__ ==  "__main__":
     unittest.main()

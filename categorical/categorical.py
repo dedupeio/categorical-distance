@@ -3,6 +3,10 @@ import numpy
 
 class CategoricalComparator(object):
     def __init__(self, category_names) :
+        if '' in category_names :
+            raise ValueError("'' is an invalid category name. "
+                             "'' is reserved for missing values.")
+
         vector_length = vectorLength(len(category_names))
         
         categories = [(name, name) for name in category_names]
