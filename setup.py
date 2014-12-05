@@ -9,7 +9,7 @@ except ImportError :
 setup(
     name='categorical-distance',
     url='https://github.com/datamade/categorical-distance',
-    version='1.0',
+    version='1.1',
     description='Compare two categorical variables',
     packages=['categorical'],
     install_requires=['numpy'],
