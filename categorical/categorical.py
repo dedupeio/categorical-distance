@@ -10,25 +10,30 @@ class CategoricalComparator(object):
         self.dummy_names = categories[1:]
         
         self.categories = {}
-        for i, cat in enumerate(categories) :
+        for i, (a, b) in enumerate(categories) :
             response = responseVector(i, vector_length)
-            self.categories[cat] = response
-            alternate_order = tuple(reversed(cat))
-            self.categories[alternate_order] = response
+            self.categories[(a,b)] = response
+            self.categories[(b,a)] = response
 
-        self.categories_and_null = set(category_names + [''])
         self.missing_response = numpy.array([numpy.nan] * vector_length)
+
+        self.levels = set(category_names + [''])
 
     def __call__(self, field_1, field_2):
         categories = (field_1, field_2)
         if categories in self.categories :
             return self.categories[categories]
-        elif set(categories) <= self.categories_and_null :
+        elif self.levels.issuperset(categories) :
             return self.missing_response
         else :
-            raise ValueError("value %s not among declared "\
+            unmatched = set(categories) - self.levels
+
+            category_names = tuple(self.levels.difference(['']))
+            unmatched = tuple(unmatched)
+
+            raise ValueError("value(s) %s not among declared "\
                              "set of categories: %s" %
-                             (categories, self.categories.keys()))
+                             (unmatched, category_names))
 
 def vectorLength(n) :
     vector_length = (n + 1) * n / 2 # (n + r - 1) choose r

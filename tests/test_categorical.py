@@ -23,7 +23,14 @@ class CategoricalTest(unittest.TestCase):
                                                  numpy.nan])
         assert_array_equal(comparator('c', 'c'), [ 0, 1, 0, 0, 0,])
         assert_array_equal(comparator('a', 'c'), [ 0, 0, 0, 1, 0,])
+        assert_array_equal(comparator('c', 'a'), [ 0, 0, 0, 1, 0,])
         assert_array_equal(comparator('b', 'c'), [ 0, 0, 0, 0, 1,])
+        assert_array_equal(comparator('c', 'b'), [ 0, 0, 0, 0, 1,])
+
+    def test_errors(self) :
+        comparator = categorical.CategoricalComparator(['a', 'b'])
+        self.assertRaises(ValueError, lambda : comparator(1,2))
+        self.assertRaises(ValueError, lambda : comparator('', 1))
 
 if __name__ ==  "__main__":
     unittest.main()
