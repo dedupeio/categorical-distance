@@ -1,1 +1,1 @@
-from categorical import CategoricalComparator
+from .categorical import CategoricalComparator

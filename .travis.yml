@@ -9,7 +9,7 @@ notifications:
   irc: chat.freenode.net#dedupe
 python:
 - "2.7_with_system_site_packages"
-- '2.6'
+- '3.4'
 install:
 - pip install requirements
 - python setup.py develop
