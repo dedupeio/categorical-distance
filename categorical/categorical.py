@@ -19,7 +19,7 @@ class CategoricalComparator(object):
             self.categories[(a,b)] = response
             self.categories[(b,a)] = response
 
-        self.missing_response = numpy.array([numpy.nan] * vector_length)
+        self.missing_response = numpy.array([numpy.nan] * int(vector_length))
 
         self.levels = set(category_names + [''])
 
