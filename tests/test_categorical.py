@@ -30,7 +30,6 @@ class CategoricalTest(unittest.TestCase):
     def test_errors(self) :
         comparator = categorical.CategoricalComparator(['a', 'b'])
         self.assertRaises(ValueError, lambda : comparator(1,2))
-        self.assertRaises(ValueError, lambda : comparator('', 1))
         self.assertRaises(ValueError, lambda : categorical.CategoricalComparator(['', 'b']))
 
 
