@@ -11,16 +11,12 @@ class CategoricalTest(unittest.TestCase):
         assert_array_equal(comparator('b', 'a'), [0, 1])
         assert_array_equal(comparator('a', 'b'), [0, 1])
         assert_array_equal(comparator('b', 'b'), [1, 0])
-        assert_array_equal(comparator('b', None) , [numpy.nan, numpy.nan])
     def test_categorical_three(self) : 
         comparator = categorical.CategoricalComparator(['a', 'b', 'c'])
         assert_array_equal(comparator('a', 'a'), [ 0, 0, 0, 0, 0,])
         assert_array_equal(comparator('b', 'a'), [ 0, 0, 1, 0, 0,])
         assert_array_equal(comparator('a', 'b'), [ 0, 0, 1, 0, 0,])
         assert_array_equal(comparator('b', 'b'), [ 1, 0, 0, 0, 0,])
-        assert_array_equal(comparator('b', None), [numpy.nan, numpy.nan, 
-                                                 numpy.nan, numpy.nan, 
-                                                 numpy.nan])
         assert_array_equal(comparator('c', 'c'), [ 0, 1, 0, 0, 0,])
         assert_array_equal(comparator('a', 'c'), [ 0, 0, 0, 1, 0,])
         assert_array_equal(comparator('c', 'a'), [ 0, 0, 0, 1, 0,])
@@ -30,7 +26,6 @@ class CategoricalTest(unittest.TestCase):
     def test_errors(self) :
         comparator = categorical.CategoricalComparator(['a', 'b'])
         self.assertRaises(ValueError, lambda : comparator(1,2))
-        self.assertRaises(ValueError, lambda : categorical.CategoricalComparator([None, 'b']))
 
 
 if __name__ ==  "__main__":

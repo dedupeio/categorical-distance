@@ -3,8 +3,6 @@ import warnings
 import numpy
 
 class CategoricalComparator(object):
-    missing=True
-
     def __init__(self, category_names) :
         if None in category_names :
             raise ValueError("None is an invalid category name. "
@@ -23,16 +21,12 @@ class CategoricalComparator(object):
             self.categories[(a,b)] = response
             self.categories[(b,a)] = response
 
-        self.missing_response = numpy.array([numpy.nan] * int(vector_length))
-
         self.levels = set(category_names)
 
     def __call__(self, field_1, field_2):
         categories = (field_1, field_2)
         if categories in self.categories :
             return self.categories[categories]
-        elif field_1 is None or field_2 is None :
-            return self.missing_response
         else :
             unmatched = set(categories) - self.levels
 
@@ -51,4 +45,3 @@ def responseVector(value, vector_length) :
     if value :
         response[value - 1] = 1
     return response
-
