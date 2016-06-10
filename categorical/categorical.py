@@ -37,7 +37,7 @@ class CategoricalComparator(object):
 def vectorLength(n) :
     vector_length = (n + 1) * n / 2 # (n + r - 1) choose r
     vector_length -= 1 
-    return vector_length
+    return int(vector_length)
     
 
 def responseVector(value, vector_length) :
