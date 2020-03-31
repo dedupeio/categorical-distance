@@ -3,6 +3,8 @@ categorical-distance
 
 Compare categorical variables
 
+Part of the [Dedupe.io](https://dedupe.io/) cloud service and open source toolset for de-duplicating and finding fuzzy matches in your data.
+
 ```python
 >>> import categorical
 >>> categories = ('a', 'b')
